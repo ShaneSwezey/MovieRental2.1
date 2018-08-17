@@ -1,0 +1,18 @@
+﻿.detailImage {
+    width: 300px;
+    height: 400px;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.Actors {
+    list-style-type: none;
+    font-weight: bold;
+}
+
+.Title {
+    font-weight: bold;
+}
+

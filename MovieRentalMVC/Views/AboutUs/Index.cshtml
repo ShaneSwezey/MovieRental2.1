@@ -1,0 +1,40 @@
+﻿@model MovieRentalMVC.Models.AboutUs.OfficeListingModel
+
+@section Styles {
+    <link href="~/css/AboutUsPage.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div class="page-header clearfix detailHeading">
+        <h1><b>About Us</b></h1>
+        @foreach (var office in Model.OfficeList)
+        {
+            <button type="button" class="btn" onclick='getOfficeInfo(@office.OfficeId)'>@office.City</button>
+        }
+    </div>
+
+</div>
+
+<div id="PartialView">
+    @Html.Partial("_OfficeInfo", Model.OfficeList[0])
+</div>
+
+<script type="text/javascript">
+
+    function getOfficeInfo(officeId) {
+        $.ajax({
+            type: "POST",
+            url: "/AboutUs/PartialOfficeInfo",
+            data: { "Id": officeId },
+            dataType: "html",
+            success: function (result) {
+
+                $('#PartialView').html(result);
+            },
+            error: function (response) {
+                alert(response);
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,20 @@
+﻿[
+  {
+    "City": "Seattle",
+    "State": "WA",
+    "Address": "213 SouthEast St.",
+    "ImageAddress": "/images/SeattleOffice.jpg"
+  },
+  {
+    "City": "Chicago",
+    "State": "IL",
+    "Address": "187th Holly Ave.",
+    "ImageAddress": "/images/ChicagoOffice.jpg"
+  },
+  {
+    "City": "Austin",
+    "State": "TX",
+    "Address": "776 SE Space Drive",
+    "ImageAddress": "/images/AustinOffice.jpg"
+  }
+]

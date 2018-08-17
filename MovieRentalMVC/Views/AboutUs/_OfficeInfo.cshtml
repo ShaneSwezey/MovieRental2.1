@@ -1,0 +1,26 @@
+﻿@model MovieRentalMVC.Models.AboutUs.OfficeDetailModel
+
+<div class="jumbotron">
+    <h2 class="display-3" id="OfficeTitle">@Model.City Office</h2>
+    <hr class="my-4">
+    <div class="col-md-8">
+        <p id="OfficeAddress"><span class="Title">Address</span>: @Model.Address @Model.City, @Model.State</p>
+        <p><span class="Title">Email</span>:</p>
+        <ul class="List" id="OfficeEmails">
+            @foreach (var email in Model.OfficeEmails)
+            {
+                <li><a href="@email">@email</a></li>
+            }
+        </ul>
+        <p><span class="Title">Customer Service Number</span>:</p>
+        <ul class="List" id="OfficePhoneNumbers">
+            @foreach (var phoneNumber in Model.OfficePhoneNumbers)
+            {
+                <li>@string.Format("{0:(###) ###-####}", double.Parse(phoneNumber))</li>
+            }
+        </ul>
+    </div>
+    <div class="col-4">
+        <img class="detailImage" id="OfficeImage" src="@Model.ImageAddress" />
+    </div>
+</div>

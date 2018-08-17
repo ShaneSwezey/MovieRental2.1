@@ -1,0 +1,17 @@
+﻿@model MovieRentalMVC.Models.Catalog.MovieIndexListingModel
+
+@section Styles {
+    <link href="~/css/CatalogIndex.css" rel="stylesheet" />
+}
+
+<tr class="movieRow">
+    <td class="">
+        <a asp-controller="Catalog" asp-action="Detail" asp-route-id="@Model.MovieId">
+            <img src="@Model.PosterUrl" class="imageCell" />
+        </a>
+    </td>
+    <td class="">@Model.Title</td>
+    <td class="">@Model.Genre</td>
+    <td class="">@Model.Director</td>
+    <td><a asp-controller="Catalog" asp-action="Detail" asp-route-id="@Model.MovieId">Details</a></td>
+</tr>

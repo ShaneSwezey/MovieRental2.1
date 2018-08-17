@@ -1,0 +1,48 @@
+﻿@model MovieRentalMVC.Models.Catalog.MovieDetailModel
+
+@section Styles {
+    <link href="~/css/CatalogDetail.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div class="page-header clearfix detailHeading">
+        <h2>@Model.Title</h2>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <img class="detailImage" src="@Model.ImageUrl" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p id="itemDirector"><span class="Title">Director</span>: @Model.Director</p>
+            <p id="itemReleaseDate"><span class="Title">Release Date</span>: @Html.DisplayFor(model => model.ReleaseDate)</p>
+            <p id="itemGenre"><span class="Title">Genre</span>: @Model.Genre</p>
+            <p id="itemSynopsis"><span class="Title">Synopsis</span>: @Model.Synopsis</p>
+            <button type="button" class="btn btn-success btn-lg">Rent</button>
+        </div>
+        <div class="col-md-4 detailInfo">
+            @if (Model.Actors.Count > 1)
+            {
+                <p class="Title">Actors</p>
+                <ul class="Actors">
+                    @foreach (var actor in Model.Actors)
+                    {
+                        <li>@actor.FirstName @actor.LastName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="Title">Actor</p>
+                <ul class="Actors">
+                    <li>@Model.Actors.First().FirstName @Model.Actors.First().LastName</li>
+                </ul>
+
+            }
+        </div>
+    </div>
+</div>

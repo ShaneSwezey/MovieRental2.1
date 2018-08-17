@@ -1,0 +1,26 @@
+﻿[
+  {
+    "GenreType": "Sci fi"
+  },
+  {
+    "GenreType": "Slasher"
+  },
+  {
+    "GenreType": "Horror"
+  },
+  {
+    "GenreType": "Romance"
+  },
+  {
+    "GenreType": "War"
+  },
+  {
+    "GenreType": "Action"
+  },
+  {
+    "GenreType": "Drama"
+  },
+  {
+    "GenreType": "Comedy"
+  }
+]

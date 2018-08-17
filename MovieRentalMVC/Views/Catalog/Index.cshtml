@@ -1,0 +1,32 @@
+﻿@model MovieRentalMVC.Models.Catalog.MovieIndexModel
+
+@section Styles {
+    <link href="~/css/CatalogIndex.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div class="page-header clearfix detailHeading">
+        <h2><b>Movie Catalog</b></h2>
+    </div>
+</div>
+
+<div id="movies">
+    <div id="movieTable">
+        <table class="table table-condensed" id="catalogIndexTable">
+            <thead>
+                <tr>
+                    <th>Poster</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Director</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var movie in Model.Movies)
+                {
+                    @Html.Partial("MovieIndexSummary", movie)
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
