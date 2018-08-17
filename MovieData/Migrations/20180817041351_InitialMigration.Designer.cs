@@ -10,8 +10,8 @@ using MovieData;
 namespace MovieData.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20180813025054_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20180817041351_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -199,13 +199,15 @@ namespace MovieData.Migrations
 
             modelBuilder.Entity("MovieData.DataModels.CarouselMovie", b =>
                 {
-                    b.Property<int>("MovieId")
+                    b.Property<int>("CMovieKey")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CroppedPosterURL");
 
-                    b.HasKey("MovieId");
+                    b.Property<int>("MovieId");
+
+                    b.HasKey("CMovieKey");
 
                     b.ToTable("CarouselMovies");
                 });

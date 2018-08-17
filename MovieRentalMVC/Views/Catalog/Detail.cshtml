@@ -28,21 +28,17 @@
             @if (Model.Actors.Count > 1)
             {
                 <p class="Title">Actors</p>
-                <ul class="Actors">
-                    @foreach (var actor in Model.Actors)
-                    {
-                        <li>@actor.FirstName @actor.LastName</li>
-                    }
-                </ul>
             }
             else
             {
                 <p class="Title">Actor</p>
-                <ul class="Actors">
-                    <li>@Model.Actors.First().FirstName @Model.Actors.First().LastName</li>
-                </ul>
-
             }
+            <ul class="Actors">
+            @foreach (var actor in Model.Actors)
+                {
+                <li>@actor.FirstName @actor.LastName</li>
+                }
+            </ul>
         </div>
     </div>
 </div>

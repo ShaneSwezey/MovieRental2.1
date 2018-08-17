@@ -1,4 +1,5 @@
-﻿using MovieData.DataModels;
+﻿
+using MovieData.DataModels;
 using System.Collections.Generic;
 
 namespace MovieData

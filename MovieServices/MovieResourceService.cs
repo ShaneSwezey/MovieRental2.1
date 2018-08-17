@@ -19,12 +19,18 @@ namespace MovieServices
 
         public IEnumerable<Movie> GetAll()
         {
-            return _context.Movies;
+            return _context.Movies
+                .Include(movie => movie.Director)
+                .Include(movie => movie.MovieGenres);
+                
+                
+                
         }
 
         public Movie GetById(int id)
         {
             return _context.Movies
+                .Include(m => m.Director)
                 .Include(m => m.MovieActors)
                 .Include(m => m.MovieGenres)
                 .FirstOrDefault(m => m.MovieId == id);
@@ -38,17 +44,17 @@ namespace MovieServices
             return $"{director.FirstName} {director.LastName}";
         }
 
-        public IEnumerable<string> GetGenre(int id)
+        public IEnumerable<Genre> GetGenre(int id)
         {
             var movie = GetById(id);
             if (movie == null) return null;
 
-            List<string> movieGenres = new List<string>();
+            List<Genre> movieGenres = new List<Genre>();
 
-            foreach(MovieGenre g in movie.MovieGenres)
+            foreach (MovieGenre g in movie.MovieGenres)
             {
                 Genre genre = GetGenreById(g.GenreId);
-                if (genre != null) movieGenres.Add(genre.GenreType);
+                if (genre != null) movieGenres.Add(genre);
             }
 
             return movieGenres;
@@ -88,8 +94,32 @@ namespace MovieServices
                 .FirstOrDefault(m => m.MovieId == id)
                 .Title;
         }
-       
-        private Genre GetGenreById(int id)
+
+        public ICollection<Actor> GetActors(int id)
+        {
+            var movie = GetById(id);
+            if (movie.Equals(null) || movie.MovieActors.Equals(null))
+            {
+                return null;
+            }
+      
+            List<Actor> actors = new List<Actor>();
+
+            foreach(MovieActor a in movie.MovieActors)
+            {
+                Actor actor = GetActorById(a.ActorId);
+                actors.Add(actor);
+            }
+
+            return actors;
+        }
+
+        private Actor GetActorById(int id)
+        {
+            return _context.Actors.FirstOrDefault(actor => actor.ActorId == id);
+        }
+
+private Genre GetGenreById(int id)
         {
             return _context.Genres.FirstOrDefault(g => g.GenreId == id);
         }

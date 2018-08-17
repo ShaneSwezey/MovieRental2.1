@@ -197,13 +197,15 @@ namespace MovieData.Migrations
 
             modelBuilder.Entity("MovieData.DataModels.CarouselMovie", b =>
                 {
-                    b.Property<int>("MovieId")
+                    b.Property<int>("CMovieKey")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CroppedPosterURL");
 
-                    b.HasKey("MovieId");
+                    b.Property<int>("MovieId");
+
+                    b.HasKey("CMovieKey");
 
                     b.ToTable("CarouselMovies");
                 });

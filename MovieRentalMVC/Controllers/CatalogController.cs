@@ -25,15 +25,15 @@ namespace MovieRentalMVC.Controllers
                      PosterUrl = result.PosterUrl,
                      Director = $"{result.Director.FirstName} {result.Director.LastName}",
                      Title = result.Title,
-                     Genre = result.MovieGenres.ToList()
+                     Genre = _movies.GetGenre(result.MovieId)
                  });
 
-            var model = new MovieIndexModel()
+            var movieListings = new MovieIndexModel()
             {
                 Movies = listingResult
             };
 
-            return View(model);
+            return View(movieListings);
         }
 
         public IActionResult Detail(int id)
@@ -45,11 +45,12 @@ namespace MovieRentalMVC.Controllers
                 MovieId = movie.MovieId,
                 Title = movie.Title,
                 Director = $"{movie.Director.FirstName} {movie.Director.LastName}",
-                Genre = movie.MovieGenres.ToList(),
+                Genre = _movies.GetGenre(movie.MovieId),
                 ReleaseDate = movie.ReleaseDate,
                 Synopsis = movie.Synopsis,
                 Rating = movie.Rating,
                 ImageUrl = movie.PosterUrl,
+                Actors = _movies.GetActors(movie.MovieId)
             };
 
             return View(movieDetail);

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MovieData.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,13 +65,14 @@ namespace MovieData.Migrations
                 name: "CarouselMovies",
                 columns: table => new
                 {
-                    MovieId = table.Column<int>(nullable: false)
+                    CMovieKey = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    MovieId = table.Column<int>(nullable: false),
                     CroppedPosterURL = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarouselMovies", x => x.MovieId);
+                    table.PrimaryKey("PK_CarouselMovies", x => x.CMovieKey);
                 });
 
             migrationBuilder.CreateTable(

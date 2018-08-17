@@ -40,7 +40,7 @@ namespace MovieRentalMVC.Controllers
                 OfficeList = officeListing.ToList()
             };
 
-            return View(officeList);
+            return View(officesList);
         }
 
         [HttpPost]

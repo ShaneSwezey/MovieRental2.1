@@ -7,8 +7,9 @@ namespace MovieData.DataModels
     [Table("CarouselMovies")]
     public class CarouselMovie
     {
-        // Primary key for MovieDB.CarouselMovies {{int}}
         [Key]
+        public int CMovieKey { get; set; }
+
         public int MovieId { get; set; }
         // Image file location string for Home/Index carousel {{varchar(Max)}}
         public string CroppedPosterURL { get; set; }
