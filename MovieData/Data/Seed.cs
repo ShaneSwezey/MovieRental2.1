@@ -1,6 +1,7 @@
 ﻿using MovieData.DataModels;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace MovieData.Data
@@ -9,10 +10,12 @@ namespace MovieData.Data
     {
 
         private MovieDbContext _context;
+        private string solutionName;
 
         public Seed(MovieDbContext context)
         {
             _context = context;
+            solutionName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
         }
 
         public void SeedAll()
@@ -28,7 +31,7 @@ namespace MovieData.Data
         {
             if (!_context.Directors.Any())
             {
-                var directorData = System.IO.File.ReadAllText("Data/DirectorSeedData.json");
+                var directorData = System.IO.File.ReadAllText($"{solutionName}/MovieRental/MovieData/Data/DirectorSeedData.json");
                 var directorsList = JsonConvert.DeserializeObject<List<Director>>(directorData);
 
                 if (directorsList != null)
@@ -44,11 +47,14 @@ namespace MovieData.Data
         {
             if (!_context.Movies.Any())
             {
-                var movieData = System.IO.File.ReadAllText("Data/MovieSeedData.json");
+                var movieData = System.IO.File.ReadAllText($"{solutionName}/MovieRental/MovieData/Data/MovieSeedData.json");
                 var movieList = JsonConvert.DeserializeObject<List<Movie>>(movieData);
+
+                var movieDirectors = GetDirectorRefId();
 
                 foreach(Movie movie in movieList)
                 {
+                    movie.RefDirectorId = movieDirectors[movie.Title];
                     _context.Movies.Add(movie);
                 }
 
@@ -60,7 +66,7 @@ namespace MovieData.Data
         {
             if (!_context.Actors.Any())
             {
-                var actorData = System.IO.File.ReadAllText("Data/ActorSeedData.json");
+                var actorData = System.IO.File.ReadAllText($"{solutionName}/MovieRental/MovieData/Data/ActorSeedData.json");
                 var actorList = JsonConvert.DeserializeObject<List<Actor>>(actorData);
 
                 foreach (Actor actor in actorList)
@@ -76,7 +82,7 @@ namespace MovieData.Data
         {
             if (!_context.Genres.Any())
             {
-                var genreData = System.IO.File.ReadAllText("Data/GenreSeedData.json");
+                var genreData = System.IO.File.ReadAllText($"{solutionName}/MovieRental/MovieData/Data/GenreSeedData.json");
                 var genreList = JsonConvert.DeserializeObject<List<Genre>>(genreData);
 
                 foreach (Genre genre in genreList)
@@ -92,7 +98,7 @@ namespace MovieData.Data
         {
             if (!_context.Offices.Any())
             {
-                var officeData = System.IO.File.ReadAllText("Data/OfficeSeedData.json");
+                var officeData = System.IO.File.ReadAllText($"{solutionName}/MovieRental/MovieData/Data/OfficeSeedData.json");
                 var officeList = JsonConvert.DeserializeObject<List<Office>>(officeData);
 
                 foreach (Office office in officeList)
@@ -102,6 +108,24 @@ namespace MovieData.Data
 
                 _context.SaveChanges();
             }
+        }
+
+        private IDictionary<string, int> GetDirectorRefId()
+        {
+            Dictionary<string, int> movieDirector = new Dictionary<string, int>()
+            {
+                { "Blade Runner", 1 },
+                { "Halloween", 2},
+                { "Alien", 1},
+                { "Breakfast at Tiffany's", 3},
+                { "Saving Private Ryan", 4},
+                { "Blade Runner 2049", 5},
+                { "Aliens", 6},
+                { "The Evil Dead", 7},
+                { "Evil Dead II", 7},
+            };
+
+            return movieDirector;
         }
 
     }
