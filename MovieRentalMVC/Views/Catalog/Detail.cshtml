@@ -1,4 +1,5 @@
 ﻿@model MovieRentalMVC.Models.Catalog.MovieDetailModel
+@using MovieData.DataModels;
 
 @section Styles {
     <link href="~/css/CatalogDetail.css" rel="stylesheet" />
@@ -20,24 +21,32 @@
         <div class="col-md-4">
             <p id="itemDirector"><span class="Title">Director</span>: @Model.Director.FirstName @Model.Director.LastName</p>
             <p id="itemReleaseDate"><span class="Title">Release Date</span>: @Html.DisplayFor(model => model.ReleaseDate)</p>
-            <p id="itemGenre"><span class="Title">Genre</span>: @Model.Genre</p>
+            <p id="itemGenre">
+                <span class="Title">Genre</span>:
+                @{
+                    foreach (MovieGenre mGenre in Model.MovieGenre)
+                    {
+                        @mGenre.Genre.GenreType
+                    }
+                }
+            </p>
             <p id="itemSynopsis"><span class="Title">Synopsis</span>: @Model.Synopsis</p>
             <button type="button" class="btn btn-success btn-lg">Rent</button>
         </div>
         <div class="col-md-4 detailInfo">
-            @if (Model.Actors.Count > 1)
-            {
+            @if (Model.MovieActors.Count > 1)
+             {
                 <p class="Title">Actors</p>
-            }
-            else
-            {
+             }
+             else
+             {
                 <p class="Title">Actor</p>
-            }
+             }
             <ul class="Actors">
-            @foreach (var actor in Model.Actors)
-                {
-                <li>@actor.FirstName @actor.LastName</li>
-                }
+            @foreach (var mActor in Model.MovieActors)
+             {
+                <li>@mActor.Actor.FirstName @mActor.Actor.LastName</li>
+             }
             </ul>
         </div>
     </div>

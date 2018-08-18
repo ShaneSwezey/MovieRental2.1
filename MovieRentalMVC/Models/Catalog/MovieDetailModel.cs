@@ -15,11 +15,11 @@ namespace MovieRentalMVC.Models.Catalog
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
-        public IEnumerable<Genre> Genre { get; set; }
+        public IEnumerable<MovieGenre> MovieGenre { get; set; }
         public string Rating { get; set; }
         public string Synopsis { get; set; }
         public Director Director { get; set; }
 
-        public ICollection<Actor> Actors { get; set; }
+        public ICollection<MovieActor> MovieActors { get; set; }
     }
 }

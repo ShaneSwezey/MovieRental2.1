@@ -28,9 +28,11 @@ namespace MovieServices
         public Movie GetById(int id)
         {
             return _context.Movies
-                .Include(m => m.Director)
-                .Include(m => m.MovieActors)
-                .Include(m => m.MovieGenres)
+                .Include(movie => movie.Director)
+                .Include(movie => movie.MovieActors)
+                    .ThenInclude(mActor => mActor.Actor)
+                .Include(movie => movie.MovieGenres)
+                    .ThenInclude(mGenre => mGenre.Genre)
                 .FirstOrDefault(m => m.MovieId == id);
         }
 

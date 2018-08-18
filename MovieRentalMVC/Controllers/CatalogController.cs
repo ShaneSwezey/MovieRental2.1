@@ -45,12 +45,12 @@ namespace MovieRentalMVC.Controllers
                 MovieId = movie.MovieId,
                 Title = movie.Title,
                 Director = movie.Director,
-                Genre = _movies.GetGenre(movie.MovieId),
+                MovieGenre = movie.MovieGenres,
                 ReleaseDate = movie.ReleaseDate,
                 Synopsis = movie.Synopsis,
                 Rating = movie.Rating,
                 ImageUrl = movie.PosterUrl,
-                Actors = _movies.GetActors(movie.MovieId)
+                MovieActors = movie.MovieActors
             };
 
             return View(movieDetail);
