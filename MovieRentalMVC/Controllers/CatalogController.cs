@@ -23,7 +23,7 @@ namespace MovieRentalMVC.Controllers
                  {
                      MovieId = result.MovieId,
                      PosterUrl = result.PosterUrl,
-                     Director = $"{result.Director.FirstName} {result.Director.LastName}",
+                     Director = result.Director,
                      Title = result.Title,
                      Genre = _movies.GetGenre(result.MovieId)
                  });

@@ -12,6 +12,6 @@
     </td>
     <td>@Model.Title</td>
     <td>@Model.Genre</td>
-    <td>@Model.Director</td>
+    <td>@Model.Director.FirstName @Model.Director.LastName</td>
     <td><a asp-controller="Catalog" asp-action="Detail" asp-route-id="@Model.MovieId">Details</a></td>
 </tr>
