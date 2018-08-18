@@ -9,6 +9,6 @@ namespace MovieRentalMVC.Models.Catalog
         public string PosterUrl { get; set; }
         public string Title { get; set; }
         public Director Director { get; set; }
-        public IEnumerable<Genre> Genre { get; set; }
+        public IEnumerable<MovieGenre> MovieGenre { get; set; }
     }
 }

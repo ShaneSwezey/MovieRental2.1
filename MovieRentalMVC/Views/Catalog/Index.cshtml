@@ -23,9 +23,9 @@
             </thead>
             <tbody>
                 @foreach (var movie in Model.Movies)
-                {
-                    await Html.RenderPartialAsync("MovieIndexSummary", movie);
-                }
+                 {
+                   await Html.PartialAsync("MovieIndexSummary", movie);
+                 }
             </tbody>
         </table>
     </div>

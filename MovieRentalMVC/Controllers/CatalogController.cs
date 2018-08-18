@@ -25,7 +25,7 @@ namespace MovieRentalMVC.Controllers
                      PosterUrl = result.PosterUrl,
                      Director = result.Director,
                      Title = result.Title,
-                     Genre = _movies.GetGenre(result.MovieId)
+                     MovieGenre = result.MovieGenres
                  });
 
             var movieListings = new MovieIndexModel()

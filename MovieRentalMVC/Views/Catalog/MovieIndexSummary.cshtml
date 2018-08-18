@@ -1,4 +1,5 @@
 ﻿@model MovieRentalMVC.Models.Catalog.MovieIndexListingModel
+@using MovieData.DataModels;
 
 @section Styles 
 {
@@ -12,7 +13,14 @@
         </a>
     </td>
     <td>@Model.Title</td>
-    <td>@Model.Genre</td>
+    <td>
+        @{ 
+            foreach(MovieGenre mGenre in Model.MovieGenre)
+            {
+                mGenre.Genre.GenreType;
+            }
+        }
+    </td>
     <td>@Model.Director.FirstName @Model.Director.LastName</td>
     <td><a asp-controller="Catalog" asp-action="Detail" asp-route-id="@Model.MovieId">Details</a></td>
 </tr>

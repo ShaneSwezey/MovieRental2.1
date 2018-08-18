@@ -21,10 +21,8 @@ namespace MovieServices
         {
             return _context.Movies
                 .Include(movie => movie.Director)
-                .Include(movie => movie.MovieGenres);
-                
-                
-                
+                .Include(movie => movie.MovieGenres)
+                    .ThenInclude(mGenre => mGenre.Genre);
         }
 
         public Movie GetById(int id)
@@ -36,12 +34,15 @@ namespace MovieServices
                 .FirstOrDefault(m => m.MovieId == id);
         }
 
-        public string GetDirector(int id)
+        public Director GetDirector(int id)
         {
-            var directorId = _context.Movies.FirstOrDefault(m => m.MovieId == id).RefDirectorId;
+            var directorId = _context.Movies
+                .FirstOrDefault(m => m.MovieId == id)
+                .RefDirectorId;
+
             var director = _context.Directors.FirstOrDefault(d => d.DirectorId == directorId);
 
-            return $"{director.FirstName} {director.LastName}";
+            return director;
         }
 
         public IEnumerable<Genre> GetGenre(int id)

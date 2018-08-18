@@ -7,8 +7,6 @@ namespace MovieData
     public interface IMovieResource
     {
         
-        // Returns full name of the director
-        string GetDirector(int id);
         // Returns title of movie
         string GetTitle(int id);
         // Returns the Motion Picture Association of America film rating of the film
@@ -17,6 +15,9 @@ namespace MovieData
         string GetSynopsis(int id);
         // Returns the poster assest location
         string GetPosterUrl(int id);
+
+        // Returns full name of the director
+        Director GetDirector(int id);
 
         // Returns the release date of the movie
         DateTime GetReleaseDate(int id);
