@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <p id="itemDirector"><span class="Title">Director</span>: @Model.Director</p>
+            <p id="itemDirector"><span class="Title">Director</span>: @Model.Director.FirstName @Model.Director.LastName</p>
             <p id="itemReleaseDate"><span class="Title">Release Date</span>: @Html.DisplayFor(model => model.ReleaseDate)</p>
             <p id="itemGenre"><span class="Title">Genre</span>: @Model.Genre</p>
             <p id="itemSynopsis"><span class="Title">Synopsis</span>: @Model.Synopsis</p>

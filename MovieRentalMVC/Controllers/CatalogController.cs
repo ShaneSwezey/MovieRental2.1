@@ -44,7 +44,7 @@ namespace MovieRentalMVC.Controllers
             {
                 MovieId = movie.MovieId,
                 Title = movie.Title,
-                Director = $"{movie.Director.FirstName} {movie.Director.LastName}",
+                Director = movie.Director,
                 Genre = _movies.GetGenre(movie.MovieId),
                 ReleaseDate = movie.ReleaseDate,
                 Synopsis = movie.Synopsis,
