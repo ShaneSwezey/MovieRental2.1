@@ -5,8 +5,7 @@ using System.Collections.Generic;
 namespace MovieData
 {
     public interface IMovieResource
-    {
-        
+    {       
         // Returns title of movie
         string GetTitle(int id);
         // Returns the Motion Picture Association of America film rating of the film
