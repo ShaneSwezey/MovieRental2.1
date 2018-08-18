@@ -25,11 +25,7 @@ namespace MovieData
         // Returns Movie model with respected parameter id
         Movie GetById(int id);
 
-        ICollection<Actor> GetActors(int id);
-
         // Returns an IEnumerable of all Movie models
         IEnumerable<Movie> GetAll();
-        // Returns genre of moviie
-        IEnumerable<Genre> GetGenre(int id);
     }
 }

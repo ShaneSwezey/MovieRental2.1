@@ -47,22 +47,6 @@ namespace MovieServices
             return director;
         }
 
-        public IEnumerable<Genre> GetGenre(int id)
-        {
-            var movie = GetById(id);
-            if (movie == null) return null;
-
-            List<Genre> movieGenres = new List<Genre>();
-
-            foreach (MovieGenre g in movie.MovieGenres)
-            {
-                Genre genre = GetGenreById(g.GenreId);
-                if (genre != null) movieGenres.Add(genre);
-            }
-
-            return movieGenres;
-        }
-
         public string GetPosterUrl(int id)
         {
             return _context.Movies
@@ -97,35 +81,5 @@ namespace MovieServices
                 .FirstOrDefault(m => m.MovieId == id)
                 .Title;
         }
-
-        public ICollection<Actor> GetActors(int id)
-        {
-            var movie = GetById(id);
-            if (movie.Equals(null) || movie.MovieActors.Equals(null))
-            {
-                return null;
-            }
-      
-            List<Actor> actors = new List<Actor>();
-
-            foreach(MovieActor a in movie.MovieActors)
-            {
-                Actor actor = GetActorById(a.ActorId);
-                actors.Add(actor);
-            }
-
-            return actors;
-        }
-
-        private Actor GetActorById(int id)
-        {
-            return _context.Actors.FirstOrDefault(actor => actor.ActorId == id);
-        }
-
-private Genre GetGenreById(int id)
-        {
-            return _context.Genres.FirstOrDefault(g => g.GenreId == id);
-        }
-
     }
 }
