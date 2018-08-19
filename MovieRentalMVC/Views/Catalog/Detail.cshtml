@@ -26,8 +26,10 @@
                 @{
                     foreach (MovieGenre mGenre in Model.MovieGenre)
                     {
-                        @mGenre.Genre.GenreType
-                    }
+                        <span>
+                        @mGenre.Genre.GenreType 
+                        </span>
+                    }   
                 }
             </p>
             <p id="itemSynopsis"><span class="Title">Synopsis</span>: @Model.Synopsis</p>
