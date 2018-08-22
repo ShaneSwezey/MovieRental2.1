@@ -1,7 +1,7 @@
 ﻿namespace MovieData.DataModels
 {
     // Model for Many to many table MovieActor
-    // Conntects table movie to table Actor
+    // Conntects table Movies to table Actors
     public class MovieActor
     {
         // MovieId reference key in table Movie

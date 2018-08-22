@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace MovieServices
 {
+    // CarouselResourceService class offers access to records contained in carousel tables within database MovieDB2.0
     public class CarouselResourceService : ICarouselResource
     {
 

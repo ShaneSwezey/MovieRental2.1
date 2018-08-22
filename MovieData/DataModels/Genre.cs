@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieData.DataModels
 {
+    // Model for movie genre from table Genres in database MovieDB2.0 
     [Table("Genres")]
     public class Genre
     {

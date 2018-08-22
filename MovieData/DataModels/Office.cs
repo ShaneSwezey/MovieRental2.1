@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieData.DataModels
 {
+    // Model for office from table Offices in database MovieDB2.0 
     [Table("Offices")]
     public class Office
     {

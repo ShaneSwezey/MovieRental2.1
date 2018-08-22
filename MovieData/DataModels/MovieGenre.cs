@@ -1,5 +1,6 @@
 ﻿namespace MovieData.DataModels
 {
+    // Many to many model for Movies, and Genres
     public class MovieGenre
     {
         // MovieId reference key in table Movie

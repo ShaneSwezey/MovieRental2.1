@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieData.DataModels
 {
+    // Model for Office phone numbers from table OfficePhoneNumbers in database MovieDB2.0 
     [Table("OfficePhoneNumbers")]
     public class OfficePhoneNumber
     {

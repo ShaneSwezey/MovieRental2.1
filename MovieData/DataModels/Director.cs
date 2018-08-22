@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieData.DataModels
 {
+    // Model for movie director from table Directors in database MovieDB2.0 
     [Table("Directors")]
     public class Director
     {

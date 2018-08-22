@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace MovieServices
 {
+    // MovieResourceService class offers access to records contained in movie tables within database MovieDB2.0
     public class MovieResourceService : IMovieResource
     {
         // Dbcontext
