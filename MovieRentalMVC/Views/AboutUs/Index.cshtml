@@ -16,7 +16,7 @@
 </div>
 
 <div id="PartialView">
-    @Html.Partial("_OfficeInfo", Model.OfficeList[0])
+    @await Html.PartialAsync("_OfficeInfo", Model.OfficeList[0]);
 </div>
 
 <script type="text/javascript">

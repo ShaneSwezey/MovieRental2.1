@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MovieServices
 {
-    // OfficeResourceService class offers access to records contained in Office tables in MovieDB2.0
+    // OfficeResourceService class offers access to records contained in Office tables within database MovieDB2.0
     public class OfficeResourceService : IOfficeResource
     {
         // DbContext

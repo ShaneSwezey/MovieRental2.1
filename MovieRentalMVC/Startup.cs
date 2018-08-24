@@ -42,7 +42,7 @@ namespace MovieRentalMVC
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MovieDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders(); // Adds token provider services 
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -63,6 +63,7 @@ namespace MovieRentalMVC
             seed.SeedAll();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication(); // Sets up cookie middleware
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
