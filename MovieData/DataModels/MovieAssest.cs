@@ -9,7 +9,8 @@ namespace MovieData.DataModels
         // Primary key in table MovieAssests
         [Key]
         public int AssestId { get; set; }
-        // Is the current physical copy of the movie in inventory 
+        // Is the current physical copy of the movie in inventory
+        [Required]
         public bool Active { get; set; }
 
         // Foreign Key reference to movie 
