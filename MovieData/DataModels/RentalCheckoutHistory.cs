@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MovieData.DataModels
 {
     [Table("RentalCheckoutHistories")]
-    class RentalCheckoutHistory
+    public class RentalCheckoutHistory
     {
         [Key]
         public int RentalHistoryId { get; set; }
@@ -15,10 +15,13 @@ namespace MovieData.DataModels
 
         public DateTime? ReturnDate { get; set; }
 
-        // ForeignKey to Renters account
+        // Foreign Key to Renter's account
         [ForeignKey("AspNetUsers")]
         public int RefAspNetUserId { get; set; }
 
-        // ForiegnKey reference to movie rental
+        // Foreign Key reference to movie rental
+        [ForeignKey("MovieAssest")]
+        public int RefMovieAssestId { get; set; }
+        public MovieAssest MovieAssest { get; set; }
     }
 }
