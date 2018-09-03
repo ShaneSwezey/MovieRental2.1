@@ -17,6 +17,11 @@ namespace MovieData
         public DbSet<Office> Offices { get; set; }
         public DbSet<OfficeEmail> OfficeEmails { get; set; }
         public DbSet<OfficePhoneNumber> OfficePhoneNumbers { get; set; }
+        public DbSet<RentalCheckout> RentalCheckouts { get; set; }
+        public DbSet<RentalCheckoutHistory> RentalCheckoutHistories { get; set; }
+        public DbSet<Hold> Holds { get; set; }
+        public DbSet<Dvd> Dvds { get; set; }
+        public DbSet<BlueRay> BlueRays { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -57,6 +62,8 @@ namespace MovieData
                 .HasMany(c => c.OfficePhoneNumbers)
                 .WithOne(e => e.Office);
 
+            modelBuilder.Entity<MovieAssest>()
+                .ToTable("MovieAssests");
         }
     }
 }
