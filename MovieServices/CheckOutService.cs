@@ -9,7 +9,7 @@ namespace MovieServices
     public class CheckOutService : ICheckOutResource
     {
 
-        private const int DEFAULTRENTALTIME = 15;
+        private const int DEFAULT_RENTAL_DAYS_LIMIT = 15;
 
         private readonly MovieDbContext _context;
 
@@ -124,7 +124,7 @@ namespace MovieServices
 
         private DateTime SetDefaultCheckoutTime(DateTime now)
         {
-            return now.AddDays(DEFAULTRENTALTIME);
+            return now.AddDays(DEFAULT_RENTAL_DAYS_LIMIT);
         }
     }
 }
