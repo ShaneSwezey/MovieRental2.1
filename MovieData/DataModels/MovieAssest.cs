@@ -12,6 +12,9 @@ namespace MovieData.DataModels
         // Is the current physical copy of the movie in inventory
         [Required]
         public bool Active { get; set; }
+        // Is current disk copy checked out
+        [Required]
+        public bool Checkedout { get; set; }
 
         // Foreign Key reference to movie 
         [ForeignKey("Movie")]

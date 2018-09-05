@@ -22,6 +22,7 @@ namespace MovieData
         public DbSet<Hold> Holds { get; set; }
         public DbSet<Dvd> Dvds { get; set; }
         public DbSet<BlueRay> BlueRays { get; set; }
+        public DbSet<MovieAssest> MovieAssests { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

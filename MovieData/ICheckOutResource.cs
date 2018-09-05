@@ -1,4 +1,5 @@
 ﻿using MovieData.DataModels;
+using System;
 using System.Collections.Generic;
 
 namespace MovieData
@@ -9,7 +10,7 @@ namespace MovieData
         RentalCheckout GetCheckout(int id);
 
         IEnumerable<RentalCheckoutHistory> GetAllRentalCheckoutHistories();
-        RentalCheckoutHistory GetRentalCheckoutHistory(int id);
+        IEnumerable<RentalCheckoutHistory> GetRentalCheckoutHistory(int userId);
 
         void PlaceHold(int renterId, int movieAssestId);
         void Checkout(int renterId, int movieAssestId);
@@ -18,11 +19,12 @@ namespace MovieData
         RentalCheckout GetLatestCheckout(int renterId);
 
         int GetNumberOfCopies(int movieAssestId, string diskFormat);
-        bool IsCheckout(int movieAssestId);
+        MovieAssest IsCheckedout(string movieTitle, MovieAssest type);
 
-        IEnumerable<Hold> GetCurrentHolds(int movieAssestId);
+        IEnumerable<Hold> GetCurrentHolds(int movieId);
 
         void MarkLost(int movieAssestId);
         void MarkFound(int movieAssestId);
+
     }
 }
