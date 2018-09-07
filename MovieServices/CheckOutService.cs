@@ -20,12 +20,62 @@ namespace MovieServices
 
         public void Checkin(int movieAssestId)
         {
-            throw new System.NotImplementedException();
+            var rentalHistoryrecord = _context.RentalCheckoutHistories
+                .FirstOrDefault(rh => rh.RefMovieAssestId == movieAssestId);
+
+            if (rentalHistoryrecord == null) return;
+
+            var returnDate = DateTime.Now;
+
+            var rentalCheckout = _context.RentalCheckouts
+                .FirstOrDefault(rc => rc.RefMovieAssestId == movieAssestId);
+
+            rentalCheckout.MovieAssest.Checkedout = false;
+
+            _context.Update(rentalCheckout);
+
+            rentalHistoryrecord.ReturnDate = returnDate;
+
+            _context.Update(rentalHistoryrecord);
+
+            _context.SaveChanges();
+
         }
 
         public void Checkout(int renterId, int movieAssestId)
         {
-            throw new System.NotImplementedException();
+            var movieAssest = _context.MovieAssests
+                .FirstOrDefault(m => m.AssestId == movieAssestId);
+
+            movieAssest.Checkedout = true;
+
+            _context.Update(movieAssest);
+
+            var checkoutDate = DateTime.Now;
+
+            var newCheckout = new RentalCheckout()
+            {
+                CheckoutDate = checkoutDate,
+                ReturnDate = GetDefaultCheckoutTime(checkoutDate),
+                RefAspNetUserId = renterId,
+                RefMovieAssestId = movieAssest.AssestId,
+                MovieAssest = movieAssest
+            };
+
+            _context.RentalCheckouts.Add(newCheckout);
+
+            var newRentalHistoryRecord = new RentalCheckoutHistory()
+            {
+                CheckoutDate = checkoutDate,
+                ReturnDate = null,
+                RefAspNetUserId = renterId,
+                RefMovieAssestId = movieAssest.AssestId,
+                MovieAssest = movieAssest
+            };
+
+            _context.RentalCheckoutHistories.Add(newRentalHistoryRecord);
+
+            _context.SaveChanges();
         }
 
         public IEnumerable<RentalCheckout> GetAllCheckouts()
@@ -46,10 +96,11 @@ namespace MovieServices
             return checkout;
         }
 
-        public IEnumerable<Hold> GetCurrentHolds(int movieId)
+        public IEnumerable<Hold> GetCurrentHolds(string movieTitle, string diskType)
         {
             var holdList = _context.Holds
-                .Where(h => h.MovieAssest.RefMovieId == movieId);
+                .Where(h => h.MovieTitle == movieTitle 
+                && h.DiskType.Equals(diskType, StringComparison.InvariantCultureIgnoreCase));
 
             return holdList;
         }
@@ -72,9 +123,22 @@ namespace MovieServices
             return rentalHistoryList;
         }
 
-        public MovieAssest IsCheckedout(string movieTitle, MovieAssest diskType)
+        public bool IsBlueRayCheckedOut(string movieTitle)
         {
-            
+            var isCheckedOut = _context.BlueRays.Any(br => 
+                br.Movie.Title.Equals(movieTitle, StringComparison.InvariantCultureIgnoreCase) 
+                && br.Checkedout == false);
+
+            return isCheckedOut;
+        }
+
+        public bool IsDvdCheckedOut(string movieTitle)
+        {
+            var isCheckedOut = _context.Dvds.Any(br =>
+                br.Movie.Title.Equals(movieTitle, StringComparison.InvariantCultureIgnoreCase)
+                && br.Checkedout == false);
+
+            return isCheckedOut;
         }
 
         public void MarkFound(int movieAssestId)
@@ -105,7 +169,7 @@ namespace MovieServices
             _context.SaveChanges();
         }
 
-        public void PlaceHold(int renterId, int movieAssestId)
+        public void PlaceHold(int renterId, string movieTitle, string diskType)
         {
 
             var now = DateTime.Now;
@@ -114,7 +178,8 @@ namespace MovieServices
             {
                 HoldDate = now,
                 RefAspNetUserId = renterId,
-                RefMovieAssestId = movieAssestId
+                MovieTitle = movieTitle,
+                DiskType = diskType
             };
 
             _context.Holds.Add(newHold);
@@ -122,7 +187,7 @@ namespace MovieServices
             _context.SaveChanges();
         }
 
-        private DateTime SetDefaultCheckoutTime(DateTime now)
+        private DateTime GetDefaultCheckoutTime(DateTime now)
         {
             return now.AddDays(DEFAULT_RENTAL_DAYS_LIMIT);
         }

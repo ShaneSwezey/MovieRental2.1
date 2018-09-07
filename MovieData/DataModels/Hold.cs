@@ -18,9 +18,10 @@ namespace MovieData.DataModels
         [ForeignKey("AspNetUsers")]
         public int RefAspNetUserId { get; set; }
 
-        // ForeignKey reference to movie rental
-        [ForeignKey("MovieAssest")]
-        public int RefMovieAssestId { get; set; }
-        public MovieAssest MovieAssest { get; set; }
+        // Title of movie to be rented
+        public string MovieTitle { get; set; }
+
+        // Disk type
+        public string DiskType { get; set; }
     }
 }

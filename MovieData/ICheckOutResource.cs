@@ -12,16 +12,16 @@ namespace MovieData
         IEnumerable<RentalCheckoutHistory> GetAllRentalCheckoutHistories();
         IEnumerable<RentalCheckoutHistory> GetRentalCheckoutHistory(int userId);
 
-        void PlaceHold(int renterId, int movieAssestId);
-        void Checkout(int renterId, int movieAssestId);
+        void PlaceHold(int renterId, string movieTitle, string diskType);
+        bool IsDvdCheckedOut(string movieTitle);
+        bool IsBlueRayCheckedOut(string movieTitle);
         void Checkin(int movieAssestId);
 
         RentalCheckout GetLatestCheckout(int renterId);
 
         int GetNumberOfCopies(int movieAssestId, string diskFormat);
-        MovieAssest IsCheckedout(string movieTitle, MovieAssest type);
 
-        IEnumerable<Hold> GetCurrentHolds(int movieId);
+        IEnumerable<Hold> GetCurrentHolds(string movieTitle, string diskType);
 
         void MarkLost(int movieAssestId);
         void MarkFound(int movieAssestId);
