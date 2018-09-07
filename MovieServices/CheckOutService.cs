@@ -96,11 +96,14 @@ namespace MovieServices
             return checkout;
         }
 
+        // Get current holds based on movie title and disktype
+        // Ordered by ascending hold date
         public IEnumerable<Hold> GetCurrentHolds(string movieTitle, string diskType)
         {
             var holdList = _context.Holds
                 .Where(h => h.MovieTitle == movieTitle 
-                && h.DiskType.Equals(diskType, StringComparison.InvariantCultureIgnoreCase));
+                && h.DiskType.Equals(diskType, StringComparison.InvariantCultureIgnoreCase))
+                .OrderBy(h => h.HoldDate);
 
             return holdList;
         }
@@ -171,7 +174,6 @@ namespace MovieServices
 
         public void PlaceHold(int renterId, string movieTitle, string diskType)
         {
-
             var now = DateTime.Now;
 
             var newHold = new Hold()
