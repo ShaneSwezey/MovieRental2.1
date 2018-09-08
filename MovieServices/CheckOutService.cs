@@ -114,9 +114,18 @@ namespace MovieServices
                 .FirstOrDefault(rc => rc.RefAspNetUserId == renterId);
         }
 
-        public int GetNumberOfCopies(int movieAssestId, string diskFormat)
+        public int GetNumberOfDvdCopies(string movieTitle)
         {
-            throw new System.NotImplementedException();
+            return _context.MovieAssests.OfType<Dvd>().Count(ma =>
+                ma.Movie.Title.Equals(movieTitle,
+                StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public int GetNumberofBlueRayCopies(string movieTitle)
+        {
+            return _context.MovieAssests.OfType<BlueRay>().Count(ma =>
+                ma.Movie.Title.Equals(movieTitle,
+                StringComparison.InvariantCultureIgnoreCase));
         }
 
         public IEnumerable<RentalCheckoutHistory> GetRentalCheckoutHistory(int userId)
@@ -194,5 +203,7 @@ namespace MovieServices
         {
             return now.AddDays(DEFAULT_RENTAL_DAYS_LIMIT);
         }
+
+        
     }
 }

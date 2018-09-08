@@ -1,5 +1,4 @@
 ﻿using MovieData.DataModels;
-using System;
 using System.Collections.Generic;
 
 namespace MovieData
@@ -19,7 +18,8 @@ namespace MovieData
 
         RentalCheckout GetLatestCheckoutFromUser(int renterId);
 
-        int GetNumberOfCopies(int movieAssestId, string diskFormat);
+        int GetNumberOfDvdCopies(string movieTitle);
+        int GetNumberofBlueRayCopies(string movieTitle);
 
         IEnumerable<Hold> GetCurrentHolds(string movieTitle, string diskType);
 
