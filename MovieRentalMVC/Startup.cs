@@ -35,6 +35,7 @@ namespace MovieRentalMVC
             services.AddScoped<IMovieResource, MovieResourceService>();
             services.AddScoped<ICarouselResource, CarouselResourceService>();
             services.AddScoped<IOfficeResource, OfficeResourceService>();
+            services.AddScoped<ICheckOutResource, CheckOutService>();
             services.AddTransient<Seed>();
 
             services.AddDbContext<MovieDbContext>(options => 
