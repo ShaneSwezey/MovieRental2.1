@@ -17,7 +17,7 @@ namespace MovieData
         bool IsBlueRayCheckedOut(string movieTitle);
         void Checkin(int movieAssestId);
 
-        RentalCheckout GetLatestCheckout(int renterId);
+        RentalCheckout GetLatestCheckoutFromUser(int renterId);
 
         int GetNumberOfCopies(int movieAssestId, string diskFormat);
 

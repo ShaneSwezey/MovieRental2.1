@@ -108,9 +108,10 @@ namespace MovieServices
             return holdList;
         }
 
-        public RentalCheckout GetLatestCheckout(int renterId)
+        public RentalCheckout GetLatestCheckoutFromUser(int renterId)
         {
-            throw new System.NotImplementedException();
+            return _context.RentalCheckouts.OrderByDescending(rc => rc.CheckoutDate)
+                .FirstOrDefault(rc => rc.RefAspNetUserId == renterId);
         }
 
         public int GetNumberOfCopies(int movieAssestId, string diskFormat)
