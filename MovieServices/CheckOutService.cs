@@ -42,40 +42,23 @@ namespace MovieServices
 
         }
 
-        public void Checkout(int renterId, int movieAssestId)
+        public bool ProcessCheckOut(int renterId, int movieId, string diskType)
         {
-            var movieAssest = _context.MovieAssests
-                .FirstOrDefault(m => m.AssestId == movieAssestId);
-
-            movieAssest.Checkedout = true;
-
-            _context.Update(movieAssest);
-
-            var checkoutDate = DateTime.Now;
-
-            var newCheckout = new RentalCheckout()
+            MovieAssest movie;
+            if (diskType.Equals("Dvd", StringComparison.InvariantCultureIgnoreCase))
             {
-                CheckoutDate = checkoutDate,
-                ReturnDate = GetDefaultCheckoutTime(checkoutDate),
-                RefAspNetUserId = renterId,
-                RefMovieAssestId = movieAssest.AssestId,
-                MovieAssest = movieAssest
-            };
-
-            _context.RentalCheckouts.Add(newCheckout);
-
-            var newRentalHistoryRecord = new RentalCheckoutHistory()
+                movie = IsDvdCheckedOut(movieId);
+            }
+            else
             {
-                CheckoutDate = checkoutDate,
-                ReturnDate = null,
-                RefAspNetUserId = renterId,
-                RefMovieAssestId = movieAssest.AssestId,
-                MovieAssest = movieAssest
-            };
+                movie = IsBlueRayCheckedOut(movieId);
+            }
 
-            _context.RentalCheckoutHistories.Add(newRentalHistoryRecord);
+            if (movie == null) return false;
 
-            _context.SaveChanges();
+            Checkout(movie, renterId);
+
+            return true;
         }
 
         public IEnumerable<RentalCheckout> GetAllCheckouts()
@@ -136,24 +119,6 @@ namespace MovieServices
             return rentalHistoryList;
         }
 
-        public bool IsBlueRayCheckedOut(string movieTitle)
-        {
-            var isCheckedOut = _context.BlueRays.Any(br => 
-                br.Movie.Title.Equals(movieTitle, StringComparison.InvariantCultureIgnoreCase) 
-                && br.Checkedout == false);
-
-            return isCheckedOut;
-        }
-
-        public bool IsDvdCheckedOut(string movieTitle)
-        {
-            var isCheckedOut = _context.Dvds.Any(br =>
-                br.Movie.Title.Equals(movieTitle, StringComparison.InvariantCultureIgnoreCase)
-                && br.Checkedout == false);
-
-            return isCheckedOut;
-        }
-
         public void MarkFound(int movieAssestId)
         {
             var movieAssest = _context.MovieAssests.FirstOrDefault(ma =>
@@ -197,6 +162,52 @@ namespace MovieServices
             _context.Holds.Add(newHold);
 
             _context.SaveChanges();
+        }
+
+        private void Checkout(MovieAssest movieAssest, int renterId)
+        {
+
+            movieAssest.Checkedout = true;
+
+            _context.Update(movieAssest);
+
+            var checkoutDate = DateTime.Now;
+
+            var newCheckout = new RentalCheckout()
+            {
+                CheckoutDate = checkoutDate,
+                ReturnDate = GetDefaultCheckoutTime(checkoutDate),
+                RefAspNetUserId = renterId,
+                RefMovieAssestId = movieAssest.AssestId,
+                MovieAssest = movieAssest
+            };
+
+            _context.RentalCheckouts.Add(newCheckout);
+
+            var newRentalHistoryRecord = new RentalCheckoutHistory()
+            {
+                CheckoutDate = checkoutDate,
+                ReturnDate = null,
+                RefAspNetUserId = renterId,
+                RefMovieAssestId = movieAssest.AssestId,
+                MovieAssest = movieAssest
+            };
+
+            _context.RentalCheckoutHistories.Add(newRentalHistoryRecord);
+
+            _context.SaveChanges();
+        }
+
+        private BlueRay IsBlueRayCheckedOut(int movieId)
+        {
+            return _context.BlueRays.FirstOrDefault(br =>
+                br.Movie.MovieId == movieId && br.Checkedout == false);
+        }
+
+        private Dvd IsDvdCheckedOut(int movieId)
+        {
+            return _context.Dvds.FirstOrDefault(br =>
+                br.Movie.MovieId == movieId && br.Checkedout == false);
         }
 
         private DateTime GetDefaultCheckoutTime(DateTime now)

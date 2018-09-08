@@ -5,26 +5,23 @@ namespace MovieData
 {
     public interface ICheckOutResource
     {
-        IEnumerable<RentalCheckout> GetAllCheckouts();
-        RentalCheckout GetCheckout(int id);
-
-        IEnumerable<RentalCheckoutHistory> GetAllRentalCheckoutHistories();
-        IEnumerable<RentalCheckoutHistory> GetRentalCheckoutHistory(int userId);
-
         void PlaceHold(int renterId, string movieTitle, string diskType);
-        bool IsDvdCheckedOut(string movieTitle);
-        bool IsBlueRayCheckedOut(string movieTitle);
         void Checkin(int movieAssestId);
+        bool ProcessCheckOut(int renterId, int movieId, string diskType);
 
-        RentalCheckout GetLatestCheckoutFromUser(int renterId);
+        void MarkLost(int movieAssestId);
+        void MarkFound(int movieAssestId);
 
         int GetNumberOfDvdCopies(string movieTitle);
         int GetNumberofBlueRayCopies(string movieTitle);
 
-        IEnumerable<Hold> GetCurrentHolds(string movieTitle, string diskType);
+        RentalCheckout GetCheckout(int id);
+        RentalCheckout GetLatestCheckoutFromUser(int renterId);
 
-        void MarkLost(int movieAssestId);
-        void MarkFound(int movieAssestId);
+        IEnumerable<RentalCheckout> GetAllCheckouts();
+        IEnumerable<RentalCheckoutHistory> GetAllRentalCheckoutHistories();
+        IEnumerable<RentalCheckoutHistory> GetRentalCheckoutHistory(int userId);
+        IEnumerable<Hold> GetCurrentHolds(string movieTitle, string diskType);
 
     }
 }
