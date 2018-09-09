@@ -1,5 +1,5 @@
 ﻿@model MovieRentalMVC.Models.Catalog.MovieIndexListingModel
-@using MovieData.DataModels;
+@using MovieData.DataModels
 
 @section Styles
 {
@@ -8,7 +8,7 @@
 
 <tr>
     <td>
-        <a asp-controller="Catalog" asp-action="Detail" asp-route-id="@Model.MovieId">
+        <a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@Model.MovieId">
         <img src="@Model.PosterUrl" class="imageCell" />
         </a>
     </td>
@@ -21,8 +21,11 @@
                 @mGenre.Genre.GenreType
                 </span>
             }
+            var value = Model.MovieId;
+            Console.WriteLine(value);
         }
+
     </td>
     <td>@Model.Director.FirstName @Model.Director.LastName</td>
-    <td><a asp-controller="Catalog" asp-action="Detail" asp-route-id="@Model.MovieId">Details</a></td>
+    <td><a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@Model.MovieId">Details</a></td>
 </tr>

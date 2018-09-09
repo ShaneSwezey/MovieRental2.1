@@ -39,16 +39,17 @@ namespace MovieRentalMVC.Controllers
             return View(movieListings);
         }
 
+        
         public IActionResult Detail(int movieId)
         {
             var movie = _movies.GetById(movieId);
-
+            
             var movieAvailiability = new MovieAvailabilityModel()
             {
                 DvdAvailiable = _checkout.IsDvdCheckedOut(movieId),
                 BlueRayAvailiable = _checkout.IsBlueRayCheckedOut(movieId)
             };
-
+            
             var movieDetail = new MovieDetailModel()
             {
                 MovieId = movie.MovieId,

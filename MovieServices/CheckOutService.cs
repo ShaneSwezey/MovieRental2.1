@@ -1,4 +1,5 @@
-﻿using MovieData;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieData;
 using MovieData.DataModels;
 using System;
 using System.Collections.Generic;
@@ -112,7 +113,7 @@ namespace MovieServices
         // Returns the total number of dvd copies the company owns based on movie title
         public int GetNumberOfDvdCopies(string movieTitle)
         {
-            return _context.MovieAssests.OfType<Dvd>().Count(ma =>
+            return _context.Dvds.Count(ma =>
                 ma.Movie.Title.Equals(movieTitle,
                 StringComparison.InvariantCultureIgnoreCase));
         }
@@ -120,7 +121,7 @@ namespace MovieServices
         // Returns the total number of blue ray copies the company owns based on movie title
         public int GetNumberofBlueRayCopies(string movieTitle)
         {
-            return _context.MovieAssests.OfType<BlueRay>().Count(ma =>
+            return _context.BlueRays.Count(ma =>
                 ma.Movie.Title.Equals(movieTitle,
                 StringComparison.InvariantCultureIgnoreCase));
         }
@@ -134,33 +135,15 @@ namespace MovieServices
             return rentalHistoryList;
         }
 
-        // 
+        
         public void MarkFound(int movieAssestId)
         {
-            var movieAssest = _context.MovieAssests.FirstOrDefault(ma =>
-                 ma.AssestId == movieAssestId);
-
-            if (movieAssest == null) return;
-
-            movieAssest.Active = true;
-
-            _context.MovieAssests.Update(movieAssest);
-
-            _context.SaveChanges();
+            throw new System.NotImplementedException();
         }
 
         public void MarkLost(int movieAssestId)
         {
-            var movieAssest = _context.MovieAssests.FirstOrDefault(ma =>
-                ma.AssestId == movieAssestId);
-
-            if (movieAssest == null) return;
-
-            movieAssest.Active = false;
-
-            _context.MovieAssests.Update(movieAssest);
-
-            _context.SaveChanges();
+            throw new System.NotImplementedException();
         }
 
         // Places a hold on a particular movie that is currently unavailable 
@@ -191,8 +174,8 @@ namespace MovieServices
         /// </returns>
         public BlueRay IsBlueRayCheckedOut(int movieId)
         {
-            return _context.MovieAssests.OfType<BlueRay>().FirstOrDefault(br =>
-                br.Movie.MovieId == movieId && br.Checkedout == false);
+            return _context.BlueRays
+                .FirstOrDefault(br => br.Movie.MovieId == movieId && br.Checkedout == false);
         }
 
         /// <summary>
@@ -205,8 +188,8 @@ namespace MovieServices
         /// </returns>
         public Dvd IsDvdCheckedOut(int movieId)
         {
-            return _context.MovieAssests.OfType<Dvd>().FirstOrDefault(br =>
-                br.Movie.MovieId == movieId && br.Checkedout == false);
+            return _context.Dvds
+                .FirstOrDefault(br => br.Movie.MovieId == movieId && br.Checkedout == false);
         }
 
         // Checks out an avaiable movie for an account user.
