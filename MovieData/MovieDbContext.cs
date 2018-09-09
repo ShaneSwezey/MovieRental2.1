@@ -64,6 +64,10 @@ namespace MovieData
 
             modelBuilder.Entity<MovieAssest>()
                 .ToTable("MovieAssests");
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(e => e.RefAccountId)
+                .ValueGeneratedOnAdd();
         }
     }
 }

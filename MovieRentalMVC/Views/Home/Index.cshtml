@@ -30,7 +30,7 @@
                 if (count == 0)
                 {
                     <div class="item active">
-                        <a asp-controller="Catalog" asp-action="Detail" asp-route-id="@movie.MovieId">
+                        <a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@movie.MovieId">
                             <img src="@movie.CroppedImageUrl" alt="@movie.Title" class="img-responsive" />
                         </a>
                         <div class="carousel-caption" role="option">
@@ -43,7 +43,7 @@
                 else
                 {
                     <div class="item">
-                        <a asp-controller="Catalog" asp-action="Detail" asp-route-id="@movie.MovieId">
+                        <a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@movie.MovieId">
                             <img src="@movie.CroppedImageUrl" alt="@movie.Title" class="img-responsive" />
                         </a>
                         <div class="carousel-caption" role="option">

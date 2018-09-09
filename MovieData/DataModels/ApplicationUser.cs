@@ -12,6 +12,8 @@ namespace MovieData.DataModels
         public string State { get; set; }
         // Zip code
         public int ZipCode { get; set; }
+        // AccountRefId
+        public int RefAccountId { get; set; }
         
     }
 }
