@@ -27,16 +27,14 @@
                     foreach (MovieGenre mGenre in Model.MovieGenre)
                     {
                         <span>
-                        @mGenre.Genre.GenreType 
+                            @mGenre.Genre.GenreType
                         </span>
-                    }   
+                    }
                 }
             </p>
             <p id="itemSynopsis"><span class="Title">Synopsis</span>: @Model.Synopsis</p>
-            @{ 
-
-            }
-            <button type="button" class="btn btn-success btn-lg">Rent</button>
+            @Model.MovieAvailiability.DvdAvailiable != null ?? <button type="button" class="btn btn-success btn-lg">Rent Dvd</button> : <button class="btn btn-danger btn-lg">Hold Dvd</button>
+            @Model.MovieAvailiability.BlueRayAvailiable != null ?? <button type="button" class="btn btn-primary btn-lg">Rent Blue Ray</button> : <button class="btn btn-danger btn-lg">Hold Blue Ray</button>
         </div>
         <div class="col-md-4 detailInfo">
             @if (Model.MovieActors.Count > 1)
