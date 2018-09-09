@@ -1,5 +1,6 @@
 ﻿@using MovieData.DataModels
 @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@
                     <li><a asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a></li>
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li><a asp-area="" asp-controller="Patreon" asp-action="Index">User Page</a></li>
+                        <li><a asp-area="" asp-controller="User" asp-action="Index">@UserManager.GetUserName(User) Page</a></li>
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
