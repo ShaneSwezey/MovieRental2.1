@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieData;
 using MovieRentalMVC.Models.Catalog;
+using System;
 using System.Linq;
 
 namespace MovieRentalMVC.Controllers
 {
     public class CatalogController : Controller
     {
-        private IMovieResource _movies;
+        private readonly IMovieResource _movies;
+        private readonly ICheckOutResource _checkout;
 
-        public CatalogController(IMovieResource movies)
+        public CatalogController(IMovieResource moviesService, ICheckOutResource checkoutService)
         {
-            _movies = movies;
+            _movies = moviesService ?? throw new ArgumentNullException();
+            _checkout = checkoutService ?? throw new ArgumentNullException();
         }
 
         public IActionResult Index()
