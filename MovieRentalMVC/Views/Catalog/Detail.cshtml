@@ -34,22 +34,21 @@
             </p>
             <p id="itemSynopsis"><span class="Title">Synopsis</span>: @Model.Synopsis</p>       
                 @if (Model.MovieAvailiability.DvdAvailiable != null)
-                {
+                 {
                     <button type="button" class="btn btn-success btn-lg">Rent Dvd</button>
-                }
-                else
-                {
+                 }
+                 else
+                 {
                     <button class="btn btn-danger btn-lg">Hold Dvd</button>
-                }
+                 }
                 @if (Model.MovieAvailiability.BlueRayAvailiable != null)
-                {
+                 {
                     <button type="button" class="btn btn-primary btn-lg">Rent Blue Ray</button>
-                }
-                else
-                {
+                 }
+                 else
+                 {
                     <button class="btn btn-danger btn-lg">Hold Blue Ray</button>
-                }
-            }
+                 }
         </div>
         <div class="col-md-4 detailInfo">
             @if (Model.MovieActors.Count > 1)
