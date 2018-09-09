@@ -182,7 +182,7 @@ namespace MovieServices
         }
 
         // Checks out an avaiable movie for an account user.
-        private void Checkout(MovieAssest movieAssest, int renterId)
+        public  void Checkout(MovieAssest movieAssest, int renterId)
         {
 
             movieAssest.Checkedout = true;
@@ -224,7 +224,7 @@ namespace MovieServices
         ///     BlueRay: If a blue Ray version of the film is available 
         ///     Null   : If a blue ray version of the fim is unavailabe
         /// </returns>
-        private BlueRay IsBlueRayCheckedOut(int movieId)
+        public BlueRay IsBlueRayCheckedOut(int movieId)
         {
             return _context.BlueRays.FirstOrDefault(br =>
                 br.Movie.MovieId == movieId && br.Checkedout == false);

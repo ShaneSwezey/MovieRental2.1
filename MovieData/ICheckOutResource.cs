@@ -15,6 +15,9 @@ namespace MovieData
         int GetNumberOfDvdCopies(string movieTitle);
         int GetNumberofBlueRayCopies(string movieTitle);
 
+        Dvd IsDvdCheckedOut(int movieId);
+        BlueRay IsBlueRayCheckedOut(int movieId);
+
         RentalCheckout GetCheckout(int id);
         RentalCheckout GetLatestCheckoutFromUser(int renterId);
 
