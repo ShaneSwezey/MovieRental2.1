@@ -59,7 +59,8 @@ namespace MovieRentalMVC.Controllers
                 Synopsis = movie.Synopsis,
                 Rating = movie.Rating,
                 ImageUrl = movie.PosterUrl,
-                MovieActors = movie.MovieActors
+                MovieActors = movie.MovieActors,
+                MovieAvailiability = movieAvailiability
             };
 
             return View(movieDetail);

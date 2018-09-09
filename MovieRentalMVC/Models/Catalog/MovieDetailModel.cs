@@ -19,6 +19,7 @@ namespace MovieRentalMVC.Models.Catalog
         public string Rating { get; set; }
         public string Synopsis { get; set; }
         public Director Director { get; set; }
+        public MovieAvailabilityModel MovieAvailiability { get; set; }
 
         public ICollection<MovieActor> MovieActors { get; set; }
     }
