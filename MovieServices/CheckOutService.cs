@@ -181,8 +181,36 @@ namespace MovieServices
             _context.SaveChanges();
         }
 
+        /// <summary>
+        /// Checks to see if a blue ray version of the film is available
+        /// </summary>
+        /// <param name="movieId"> movie id from table Movies </param>
+        /// <returns> 
+        ///     BlueRay: If a blue Ray version of the film is available 
+        ///     Null   : If a blue ray version of the fim is unavailabe
+        /// </returns>
+        public BlueRay IsBlueRayCheckedOut(int movieId)
+        {
+            return _context.MovieAssests.OfType<BlueRay>().FirstOrDefault(br =>
+                br.Movie.MovieId == movieId && br.Checkedout == false);
+        }
+
+        /// <summary>
+        /// Checks to see if a dvd version of the film is available
+        /// </summary>
+        /// <param name="movieId"> movie id from table Movies </param>
+        /// <returns> 
+        ///     Dvd    : If a dvd version of the film is available 
+        ///     Null   : If a dvd version of the fim is unavailabe
+        /// </returns>
+        public Dvd IsDvdCheckedOut(int movieId)
+        {
+            return _context.MovieAssests.OfType<Dvd>().FirstOrDefault(br =>
+                br.Movie.MovieId == movieId && br.Checkedout == false);
+        }
+
         // Checks out an avaiable movie for an account user.
-        public  void Checkout(MovieAssest movieAssest, int renterId)
+        private void Checkout(MovieAssest movieAssest, int renterId)
         {
 
             movieAssest.Checkedout = true;
@@ -214,34 +242,6 @@ namespace MovieServices
             _context.RentalCheckoutHistories.Add(newRentalHistoryRecord);
 
             _context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Checks to see if a blue ray version of the film is available
-        /// </summary>
-        /// <param name="movieId"> movie id from table Movies </param>
-        /// <returns> 
-        ///     BlueRay: If a blue Ray version of the film is available 
-        ///     Null   : If a blue ray version of the fim is unavailabe
-        /// </returns>
-        public BlueRay IsBlueRayCheckedOut(int movieId)
-        {
-            return _context.BlueRays.FirstOrDefault(br =>
-                br.Movie.MovieId == movieId && br.Checkedout == false);
-        }
-
-        /// <summary>
-        /// Checks to see if a dvd version of the film is available
-        /// </summary>
-        /// <param name="movieId"> movie id from table Movies </param>
-        /// <returns> 
-        ///     Dvd: If a dvd version of the film is available 
-        ///     Null   : If a dvd version of the fim is unavailabe
-        /// </returns>
-        private Dvd IsDvdCheckedOut(int movieId)
-        {
-            return _context.Dvds.FirstOrDefault(br =>
-                br.Movie.MovieId == movieId && br.Checkedout == false);
         }
 
         // Sets the default check out time to the current rental Datetime

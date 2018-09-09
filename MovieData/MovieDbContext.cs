@@ -20,8 +20,6 @@ namespace MovieData
         public DbSet<RentalCheckout> RentalCheckouts { get; set; }
         public DbSet<RentalCheckoutHistory> RentalCheckoutHistories { get; set; }
         public DbSet<Hold> Holds { get; set; }
-        public DbSet<Dvd> Dvds { get; set; }
-        public DbSet<BlueRay> BlueRays { get; set; }
         public DbSet<MovieAssest> MovieAssests { get; set; }
 
 
