@@ -16,6 +16,7 @@ namespace MovieData.DataModels
         public DateTime? ReturnDate { get; set; }
 
         // Foreign Key to Renter's account
+        [Required]
         [ForeignKey("AspNetUsers")]
         public string RefAspNetUserId { get; set; }
 
