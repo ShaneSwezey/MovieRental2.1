@@ -16,7 +16,7 @@ namespace MovieData.DataModels
 
         // ForeignKey to Renters account
         [ForeignKey("AspNetUsers")]
-        public int RefAspNetUserId { get; set; }
+        public string RefAspNetUserId { get; set; }
 
         // Title of movie to be rented
         public string MovieTitle { get; set; }

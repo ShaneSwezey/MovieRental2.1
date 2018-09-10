@@ -36,9 +36,9 @@
                     <li><a asp-area="" asp-controller="Catalog" asp-action="Index">Rental List</a></li>
                     <li><a asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a></li>
                     @if (SignInManager.IsSignedIn(User))
-                    {
-                        <li><a asp-area="" asp-controller="User" asp-action="Index">@UserManager.GetUserName(User) Page</a></li>
-                    }
+                     {
+                        <li><a asp-area="" asp-controller="User" asp-action="Index" asp-route-userId="@UserManager.GetUserId(User)">@UserManager.GetUserName(User) Page</a></li>
+                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MovieData;
+﻿using MovieData;
 using MovieData.DataModels;
 using System;
 using System.Collections.Generic;
@@ -51,7 +50,7 @@ namespace MovieServices
         /// <param name="movieId"> Movie Id </param>
         /// <param name="diskType"> Disk type wanted </param>
         /// <returns> True: if checkout succeed False: movie is not available to rent </returns>
-        public bool ProcessCheckOut(int renterId, int movieId, string diskType)
+        public bool ProcessCheckOut(string renterId, int movieId, string diskType)
         {
             MovieAssest movie;
             if (diskType.Equals("Dvd", StringComparison.InvariantCultureIgnoreCase))
@@ -104,10 +103,10 @@ namespace MovieServices
         }
 
         // Returns the lastest movie check out from an account user.
-        public RentalCheckout GetLatestCheckoutFromUser(int renterId)
+        public RentalCheckout GetLatestCheckoutFromUser(string renterId)
         {
             return _context.RentalCheckouts.OrderByDescending(rc => rc.CheckoutDate)
-                .FirstOrDefault(rc => rc.RefAspNetUserId == renterId);
+                .FirstOrDefault(rc => rc.RefAspNetUserId.Equals(renterId));
         }
 
         // Returns the total number of dvd copies the company owns based on movie title
@@ -127,10 +126,10 @@ namespace MovieServices
         }
 
         // Returns a list of past rental check outs for a particular account user.
-        public IEnumerable<RentalCheckoutHistory> GetRentalCheckoutHistory(int userId)
+        public IEnumerable<RentalCheckoutHistory> GetRentalCheckoutHistory(string userId)
         {
             var rentalHistoryList = _context.RentalCheckoutHistories
-                .Where(rh => rh.RefAspNetUserId == userId);
+                .Where(rh => rh.RefAspNetUserId.Equals(userId));
 
             return rentalHistoryList;
         }
@@ -147,7 +146,7 @@ namespace MovieServices
         }
 
         // Places a hold on a particular movie that is currently unavailable 
-        public void PlaceHold(int renterId, string movieTitle, string diskType)
+        public void PlaceHold(string renterId, string movieTitle, string diskType)
         {
             var now = DateTime.Now;
 
@@ -193,7 +192,7 @@ namespace MovieServices
         }
 
         // Checks out an avaiable movie for an account user.
-        private void Checkout(MovieAssest movieAssest, int renterId)
+        private void Checkout(MovieAssest movieAssest, string renterId)
         {
 
             movieAssest.Checkedout = true;
