@@ -24,7 +24,13 @@ namespace MovieRentalMVC.Controllers
                     ReturnDate = result.ReturnDate
                 });
             
-            var currentHolds = _checkout.GetAllHoldsByUser(userId);
+            var currentHolds = _checkout.GetAllHoldsByUser(userId)
+                .Select(result => new HoldModel
+                {
+                    Title = result.MovieTitle,
+                    HoldDate = result.HoldDate,
+                    DiskType = result.DiskType
+                });
 
             var userDetails = new UserDetailModel
             {
