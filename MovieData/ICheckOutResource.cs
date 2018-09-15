@@ -24,6 +24,8 @@ namespace MovieData
         IEnumerable<RentalCheckout> GetAllCheckouts();
         IEnumerable<RentalCheckoutHistory> GetAllRentalCheckoutHistories();
         IEnumerable<RentalCheckoutHistory> GetRentalCheckoutHistory(string userId);
+        IEnumerable<RentalCheckout> GetAllRentalCheckoutsByUser(string userId);
+        IEnumerable<Hold> GetAllHoldsByUser(string userId);
         IEnumerable<Hold> GetCurrentHolds(string movieTitle, string diskType);
 
     }

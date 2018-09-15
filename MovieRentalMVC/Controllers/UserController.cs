@@ -15,6 +15,7 @@ namespace MovieRentalMVC.Controllers
         public IActionResult Index(string userId)
         {
             // checkouts
+            // var currentCheckouts = _checkout.
             // holds
             return View();
         }

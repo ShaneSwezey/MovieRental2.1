@@ -232,6 +232,14 @@ namespace MovieServices
             return now.AddDays(DEFAULT_RENTAL_DAYS_LIMIT);
         }
 
-        
+        public IEnumerable<RentalCheckout> GetAllRentalCheckoutsByUser(string userId)
+        {
+            return _context.RentalCheckouts.Where(ch => ch.RefAspNetUserId.Equals(userId));
+        }
+
+        public IEnumerable<Hold> GetAllHoldsByUser(string userId)
+        {
+            return _context.Holds.Where(ho => ho.RefAspNetUserId.Equals(userId));
+        }
     }
 }
