@@ -1,19 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
+using MovieData;
 
 namespace MovieRentalMVC.Controllers
 {
     public class UserController : Controller
     {
-        public UserController()
-        {
+        private ICheckOutResource _checkout;
 
+        public UserController(ICheckOutResource checkout)
+        {
+            _checkout = checkout;
         }
 
         public IActionResult Index(string userId)
         {
-
-            throw new System.NotImplementedException();
+            // checkouts
+            // holds
+            return View();
         }
     }
 }
