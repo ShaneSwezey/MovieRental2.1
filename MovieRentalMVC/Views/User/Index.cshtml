@@ -13,14 +13,19 @@
                             <th>Title</th>
                             <th>Checkout Date</th>
                             <th>Return Date</th>
-                            <th>Return?</th>
+                            <th>Return</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach(var checkout in Model.Checkouts)
                          {
                             <tr>
-                                <td></td>
+                                <td>@checkout.MovieAssest.Movie.Title</td>
+                                <td>@checkout.CheckoutDate</td>
+                                <td>@checkout.ReturnDate</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">Return</button>
+                                </td>
                             </tr>
                          }
                     </tbody>
