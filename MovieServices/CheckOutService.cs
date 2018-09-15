@@ -1,4 +1,5 @@
-﻿using MovieData;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieData;
 using MovieData.DataModels;
 using System;
 using System.Collections.Generic;
@@ -234,12 +235,15 @@ namespace MovieServices
 
         public IEnumerable<RentalCheckout> GetAllRentalCheckoutsByUser(string userId)
         {
-            return _context.RentalCheckouts.Where(ch => ch.RefAspNetUserId.Equals(userId));
+            return _context.RentalCheckouts.
+                Where(ch => ch.RefAspNetUserId.Equals(userId))
+                .Include(ch => ch.MovieAssest);
         }
 
         public IEnumerable<Hold> GetAllHoldsByUser(string userId)
         {
-            return _context.Holds.Where(ho => ho.RefAspNetUserId.Equals(userId));
+            return _context.Holds
+                .Where(ho => ho.RefAspNetUserId.Equals(userId));
         }
     }
 }
