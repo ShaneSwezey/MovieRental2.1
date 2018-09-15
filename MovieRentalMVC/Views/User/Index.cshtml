@@ -1,0 +1,36 @@
+﻿@model MovieRentalMVC.Models.User.UserDetailModel;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="jumbotron">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Checkout Date</th>
+                            <th>Return Date</th>
+                            <th>Return?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ 
+                            foreach(var checkout in Model.Checkouts)
+                            {
+                                <td></td>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="jumbotron">
+
+            </div>
+        </div>
+    </div>
+</div>

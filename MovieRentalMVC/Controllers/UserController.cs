@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieData;
+using MovieRentalMVC.Models.User;
 
 namespace MovieRentalMVC.Controllers
 {
@@ -14,10 +15,17 @@ namespace MovieRentalMVC.Controllers
 
         public IActionResult Index(string userId)
         {
-            // checkouts
-            // var currentCheckouts = _checkout.
-            // holds
-            return View();
+            var currentCheckouts = _checkout.GetAllRentalCheckoutsByUser(userId);
+            
+            var currentHolds = _checkout.GetAllHoldsByUser(userId);
+
+            var userDetails = new UserDetailModel
+            {
+                Checkouts = currentCheckouts,
+                Holds = currentHolds
+            };
+
+            return View(userDetails);
         }
     }
 }
