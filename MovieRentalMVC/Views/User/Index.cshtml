@@ -1,11 +1,19 @@
 ﻿@model MovieRentalMVC.Models.User.UserDetailModel;
+@using MovieData.DataModels;
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="container">
+    <div class="page-header clearfix detailHeading">
+        <h2><b>@UserManager.GetUserName(User) Account</b></h2>
+    </div>
+</div>
+
+<div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="jumbotron">
                 <h2>Current Checkouts</h2>
                 <table class="table table-striped">
@@ -18,8 +26,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var checkout in Model.Checkouts)
-                         {
+                        @foreach (var checkout in Model.Checkouts)
+                        {
                             <tr>
                                 <td>@checkout.MovieAssest.Movie.Title</td>
                                 <td>@checkout.CheckoutDate</td>
@@ -28,12 +36,12 @@
                                     <button type="button" class="btn btn-primary">Return</button>
                                 </td>
                             </tr>
-                         }
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="jumbotron">
                 <h2>Current Holds</h2>
                 <table class="table table-striped">
@@ -45,8 +53,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var hold in Model.Holds)
-                         {
+                        @foreach (var hold in Model.Holds)
+                        {
                             <tr>
                                 <td>@hold.Title</td>
                                 <td>@hold.HoldDate</td>
@@ -55,7 +63,7 @@
                                     <button type="button" class="btn btn-danger">Remove Hold</button>
                                 </td>
                             </tr>
-                         }
+                        }
                     </tbody>
                 </table>
             </div>
