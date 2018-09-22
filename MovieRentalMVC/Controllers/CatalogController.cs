@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieData;
 using MovieRentalMVC.Models.Catalog;
 using System;
@@ -39,7 +40,6 @@ namespace MovieRentalMVC.Controllers
             return View(movieListings);
         }
 
-        
         public IActionResult Detail(int movieId)
         {
             var movie = _movies.GetById(movieId);
@@ -66,5 +66,12 @@ namespace MovieRentalMVC.Controllers
 
             return View(movieDetail);
         }
+
+        [Authorize]
+        public IActionResult Checkout()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
