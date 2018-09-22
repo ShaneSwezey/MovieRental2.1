@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieData;
 using MovieRentalMVC.Models.User;
 using System.Linq;
 
 namespace MovieRentalMVC.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private ICheckOutResource _checkout;
