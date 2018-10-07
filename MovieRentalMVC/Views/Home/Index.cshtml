@@ -15,54 +15,57 @@
 </div>
 
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        @{
-            int count = 0;
-            foreach (var movie in Model.CarouselMovieList)
-            {
-                if (count == 0)
+<div class="jumbotron">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            @{
+                int count = 0;
+                foreach (var movie in Model.CarouselMovieList)
                 {
-                    <div class="item active">
-                        <a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@movie.MovieId">
-                            <img src="@movie.CroppedImageUrl" alt="@movie.Title" class="img-responsive" />
-                        </a>
-                        <div class="carousel-caption" role="option">
-                            <p>
-                                @movie.Synopsis
-                            </p>
+                    if (count == 0)
+                    {
+                        <div class="item active">
+                            <a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@movie.MovieId">
+                                <img src="@movie.CroppedImageUrl" alt="@movie.Title" class="img-responsive" />
+                            </a>
+                            <div class="carousel-caption" role="option">
+                                <p>
+                                    @movie.Synopsis
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="item">
-                        <a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@movie.MovieId">
-                            <img src="@movie.CroppedImageUrl" alt="@movie.Title" class="img-responsive" />
-                        </a>
-                        <div class="carousel-caption" role="option">
-                            <p>
-                                @movie.Synopsis
-                            </p>
+                    }
+                    else
+                    {
+                        <div class="item">
+                            <a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@movie.MovieId">
+                                <img src="@movie.CroppedImageUrl" alt="@movie.Title" class="img-responsive" />
+                            </a>
+                            <div class="carousel-caption" role="option">
+                                <p>
+                                    @movie.Synopsis
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    count++;
                 }
-                count++;
             }
-        }
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
 </div>
+
