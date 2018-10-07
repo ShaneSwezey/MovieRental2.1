@@ -10,23 +10,25 @@
     </div>
 </div>
 
-<div id="movies">
-    <div id="movieTable">
-        <table class="table table-condensed" id="catalogIndexTable">
-            <thead>
-                <tr>
-                    <th>Poster</th>
-                    <th>Title</th>
-                    <th>Genre</th>
-                    <th>Director</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var movie in Model.Movies)
-                 {
-                   @await Html.PartialAsync("_MovieIndexSummary", movie);
-                 }
-            </tbody>
-        </table>
+<div class="jumbotron">
+    <div id="movies">
+        <div id="movieTable">
+            <table class="table table-condensed" id="catalogIndexTable">
+                <thead>
+                    <tr>
+                        <th>Poster</th>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Director</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var movie in Model.Movies)
+                    {
+                        @await Html.PartialAsync("_MovieIndexSummary", movie);
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
