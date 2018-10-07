@@ -12,20 +12,17 @@
         <img src="@Model.PosterUrl" class="imageCell" />
         </a>
     </td>
-    <td>@Model.Title</td>
+    <td><p>@Model.Title</p></td>
     <td>
         @{
             foreach (MovieGenre mGenre in Model.MovieGenre)
             {
                 <span>
-                @mGenre.Genre.GenreType
+                <p>@mGenre.Genre.GenreType</p>
                 </span>
             }
-            var value = Model.MovieId;
-            Console.WriteLine(value);
         }
 
     </td>
-    <td>@Model.Director.FirstName @Model.Director.LastName</td>
-    <td><a asp-controller="Catalog" asp-action="Detail" asp-route-movieId="@Model.MovieId">Details</a></td>
+    <td><p>@Model.Director.FirstName @Model.Director.LastName</p></td>
 </tr>
